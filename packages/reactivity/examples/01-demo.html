@@ -9,14 +9,13 @@
 
 <body>
     <script type="module">
-
-
         import { ref, effect } from "../dist/reactivity.esm.js";
-
-
         const count = ref(0);
         effect(() => {
-            console.log("count变化了", count.value);
+            // effect(() => {
+            //     console.log("内部变化了", count.value);
+            // });
+            console.log("外部变化了", count.value);
         });
 
         setTimeout(() => {
