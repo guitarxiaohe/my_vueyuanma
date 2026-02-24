@@ -4,6 +4,8 @@ class ReactivityEffect {
   constructor(public fn: Function) {}
 
   run() {
+    // debugger;
+
     const prevSub = activeSub;
     activeSub = this;
     try {
@@ -12,10 +14,17 @@ class ReactivityEffect {
       activeSub = prevSub;
     }
   }
-}
-export function effect(fn) {
-  debugger;
 
+  notify() {
+    this.schedule();
+  }
+  schedule() {
+    this.run();
+  }
+}
+export function effect(fn, options = {}) {
+  // debugger;
   const e = new ReactivityEffect(fn);
+  Object.assign(e, options);
   e.run();
 }

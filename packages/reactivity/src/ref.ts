@@ -44,6 +44,7 @@ export function isRef(value): boolean {
  */
 export function trackRef(dep) {
   if (activeSub) {
+    console.log("我是执行了", activeSub);
     link(dep, activeSub);
   }
 }
@@ -52,7 +53,7 @@ export function trackRef(dep) {
  * @param dep 依赖对象
  */
 export function trigger(dep) {
-  console.log("dep ==>", dep);
+  // console.log("dep ==>", dep);
   if (dep.subs) {
     proparger(dep.subs);
   }

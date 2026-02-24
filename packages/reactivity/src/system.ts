@@ -41,8 +41,8 @@ export function proparger(subs) {
   const queuedEffect = [];
   while (link) {
     console.log("link ==>", link);
-    queuedEffect.push(link.sub.fn);
+    queuedEffect.push(link.sub);
     link = link.nextSub;
   }
-  queuedEffect.forEach((effect) => effect());
+  queuedEffect.forEach((effect) => effect.notify());
 }

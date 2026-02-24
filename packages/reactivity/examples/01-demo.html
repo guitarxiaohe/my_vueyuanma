@@ -8,19 +8,30 @@
 </head>
 
 <body>
+
+    <div class="ee"></div>
     <script type="module">
         import { ref, effect } from "../dist/reactivity.esm.js";
         const count = ref(0);
+
         effect(() => {
             // effect(() => {
             //     console.log("内部变化了", count.value);
             // });
+            document.querySelector('.ee').innerHTML = count.value
+
             console.log("外部变化了", count.value);
+        }, {
+            schedule() {
+                console.log("我是自定义调度器");
+
+            }
         });
+
 
         setTimeout(() => {
             count.value++;
-        }, 1000);
+        }, 2000);
 
     </script>
 </body>
