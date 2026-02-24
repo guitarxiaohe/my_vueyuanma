@@ -17,6 +17,7 @@ export function link(dep, sub) {
     nextSub: undefined,
     prevSub: undefined,
   };
+
   /**
    * 关联链表
    * 判断是否有尾，如果有尾节点下级指向当前节点，当前节点上级指向尾节点，更新尾节点为当前节点
@@ -40,7 +41,7 @@ export function proparger(subs) {
   let link = subs;
   const queuedEffect = [];
   while (link) {
-    console.log("link ==>", link);
+    // console.log("link ==>", link);
     queuedEffect.push(link.sub);
     link = link.nextSub;
   }

@@ -5,7 +5,6 @@ class ReactivityEffect {
 
   run() {
     // debugger;
-
     const prevSub = activeSub;
     activeSub = this;
     try {

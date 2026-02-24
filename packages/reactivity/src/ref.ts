@@ -12,29 +12,34 @@ class Refimpl<T> {
   // 标记当前是ref对象
   private [RefFlags.IS_REF]: boolean = true;
 
-  // 依赖来源
+  // 依赖来源(链表载体)
   private subs: Link;
 
+  // 依赖链表尾
   private subsTail: Link | undefined;
   constructor(value: T) {
     this._value = value;
   }
 
+  // 收集依赖
   get value() {
     trackRef(this);
     return this._value;
   }
 
+  // 触发依赖更新
   set value(newValue: T) {
     this._value = newValue;
     trigger(this);
   }
 }
 
+// 创建ref对象
 export function ref(fn) {
   return new Refimpl(fn);
 }
 
+// 判断是否是ref对象
 export function isRef(value): boolean {
   return !!(value && value[RefFlags.IS_REF]);
 }
