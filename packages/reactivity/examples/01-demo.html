@@ -12,23 +12,37 @@
     <div class="ee"></div>
     <script type="module">
         import { ref, effect } from "../dist/reactivity.esm.js";
-        const count = ref(0);
-        console.log("ref ==>", ref)
+        // (function () {
+        //     function checkDevTools() {
+        //         const startTime = performance.now();
+        //         // 这里使用 console.log 进行检测
+        //         // 如果控制台关闭，console.log 几乎瞬间执行完成
+        //         // 如果控制台打开，console.log 会有一个明显的延迟（因为浏览器需要渲染输出）
+        //         console.log('Checking console...');
+        //         const endTime = performance.now();
 
-        effect(() => {
+        //         // 如果执行时间超过 100ms，则认为控制台打开了
+        //         if (endTime - startTime > 100) {
+        //             // 进入无限 debugger
+        //             while (true) {
+        //                 debugger;
+        //             }
+        //         }
+        //     }
+
+        //     // 每隔 1 秒检测一次
+        //     setInterval(checkDevTools, 1000);
+        // })();
+
+        const count = ref(0);
+        const e = effect(() => {
             // effect(() => {
             //     console.log("内部变化了", count.value);
             // });
             document.querySelector('.ee').innerHTML = count.value
 
             console.log("外部变化了", count.value);
-        }, {
-            schedule() {
-                console.log("我是自定义调度器");
-
-            }
-        });
-
+        },);
 
         setTimeout(() => {
             count.value++;

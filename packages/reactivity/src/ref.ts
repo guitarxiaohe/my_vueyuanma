@@ -49,7 +49,6 @@ export function isRef(value): boolean {
  */
 export function trackRef(dep) {
   if (activeSub) {
-    console.log("我是执行了", activeSub);
     link(dep, activeSub);
   }
 }
